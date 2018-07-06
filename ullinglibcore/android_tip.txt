@@ -1,0 +1,41 @@
+ConstraintLayout
+좌우 전체 잡기
+app:layout_constraintLeft_toLeftOf="parent"
+app:layout_constraintRight_toRightOf="parent"
+상하 중앙정렬
+app:layout_constraintBottom_toBottomOf="parent"
+app:layout_constraintTop_toTopOf="parent"
+좌우 중앙정렬
+app:layout_constraintEnd_toEndOf="parent"
+app:layout_constraintStart_toStartOf="parent"
+중심에서 벗어나는
+app:layout_constraintVertical_bias="0.5"
+
+
+안드로이드 애니메이션
+https://developer.android.com/training/transitions/start-activity#java
+
+https://medium.com/@andkulikov/animate-all-the-things-transitions-in-android-914af5477d50
+
+https://www.androidauthority.com/using-shared-element-transitions-activities-fragments-631996/
+
+http://www.coderkatta.com/implement-shared-element-transition-android
+
+ android:transitionName="@string/movie_station_transition"
+
+  Intent intent = new Intent(activity, DetailDoodleActivity.class);
+         intent.putExtra(Define.INTENT_DOODLE_INFO, doodle);
+         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+             ActivityOptions options = ActivityOptions.makeSceneTransitionAnimation(activity,
+                     Pair.create(stationView, stationView.getTransitionName()),
+                     Pair.create(textView, textView.getTransitionName()),
+                     Pair.create(imageView, imageView.getTransitionName()));
+
+             activity.startActivity(intent, options.toBundle());
+ //            activity.overridePendingTransition(R.anim.fade_in, R.anim.hold);
+         } else {
+             activity.startActivity(intent);
+             activity.overridePendingTransition(R.anim.fade_in, R.anim.hold);
+         }
+
+

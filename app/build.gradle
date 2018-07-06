@@ -1,0 +1,92 @@
+apply plugin: 'com.android.application'
+
+android {
+    compileSdkVersion 27
+    defaultConfig {
+        applicationId "com.ulling.oneday"
+        minSdkVersion 19
+        targetSdkVersion 27
+        versionCode 1
+        versionName "1.0.0"
+        multiDexEnabled true
+        testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
+    }
+    signingConfigs {
+        debugKey {
+//            keyAlias 'testDebugKey'
+//            keyPassword 'android'
+//            storeFile file('/Users/KILHO/Desktop/keyStore/testDebugKey.keystore')
+//            storePassword 'android'
+
+            keyAlias 'androiddebugkey'
+            keyPassword 'android'
+            storeFile file('/Users/KILHO/Desktop/keyStore/ullim_debugkey.keystore')
+            storePassword 'android'
+        }
+    }
+    dataBinding {
+        enabled = true
+    }
+    dexOptions {
+        jumboMode true
+        javaMaxHeapSize "4g"
+//    javaMaxHeapSize "2048M"
+    }
+    buildTypes {
+        debug {
+            signingConfig signingConfigs.debugKey
+        }
+
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+        }
+    }
+}
+
+dependencies {
+    implementation project(':ullinglibcore')
+    implementation fileTree(dir: 'libs', include: ['*.jar'])
+    implementation 'com.android.support:appcompat-v7:27.1.1'
+    implementation 'com.android.support.constraint:constraint-layout:1.1.1'
+    implementation 'com.android.support:design:27.1.1'
+    implementation 'com.android.support:support-v4:27.1.1'
+    implementation 'com.android.support:recyclerview-v7:27.1.1'
+    implementation 'com.android.support:cardview-v7:27.1.1'
+    /**
+     * lifecycle
+     */
+    implementation 'android.arch.lifecycle:extensions:1.1.1'
+    annotationProcessor 'android.arch.lifecycle:compiler:1.1.1'
+    /**
+     * Firebase database
+     */
+    implementation 'com.google.firebase:firebase-core:16.0.1'
+    implementation 'com.google.firebase:firebase-auth:16.0.1'
+    implementation 'com.google.firebase:firebase-database:16.0.1'
+    implementation 'com.google.firebase:firebase-firestore:15.0.0'
+    implementation 'com.google.firebase:firebase-storage:15.0.0'
+//    implementation 'com.firebaseui:firebase-ui-database:2.1.0'
+    implementation 'com.google.firebase:firebase-messaging:17.0.0'
+    implementation 'com.firebase:firebase-jobdispatcher:0.8.5'
+    /**
+     * util
+     */
+    implementation 'com.google.code.gson:gson:2.8.3'
+    implementation 'com.squareup.picasso:picasso:2.71828'
+    /**
+     * JodaTime
+     */
+    implementation 'joda-time:joda-time:2.9.9'
+    /**
+     * indicator
+     */
+    implementation 'com.romandanylyk:pageindicatorview:1.0.1'
+    /**
+     * lottie
+     */
+    implementation 'com.airbnb.android:lottie:2.3.0'
+}
+
+apply plugin: 'com.google.gms.google-services'
+apply plugin: 'realm-android'
